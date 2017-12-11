@@ -33,6 +33,7 @@ Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
 httpd = SocketServer.TCPServer(('localhost', port), Handler)
 
 # Close the socket on exit
+# TODO: Don't work at all times :/
 def close_socket():
     print 'closing socket.'
     httpd.server_close()
