@@ -11,3 +11,12 @@ Web interface with for python server that deliver tweet's statistics with spark 
   - [ ] Main file (`server.py`)
   - [ ] HTTP manager
   - [ ] Spark/HDFS script
+- [ ] Remove secret NASA hacking code from our code
+
+---
+
+```
+(•_•)
+( •_•)>⌐■-■
+(⌐■_■)
+```
