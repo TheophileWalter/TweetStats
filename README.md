@@ -16,8 +16,8 @@ Web interface with python server that deliver tweet's statistics with spark on H
     - [ ] Geographical repartition
     - [ ] Most used hashtags on these Tweets
     - [ ] _Some others statistics_
-  - [ ] Server query (`Javascript`)
-  - [ ] Graphical display (`JavaScript`)
+  - [ ] Server query (Javascript)
+  - [ ] Graphical display (JavaScript)
 - [ ] Application Back End (python server)
   - [ ] Serving HTML files
   - [ ] Manage HTTP sessions
