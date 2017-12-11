@@ -7,6 +7,9 @@ Web interface with python server that deliver tweet's statistics with spark on H
 - Hadoop 2.7 _(maybe not)_
 - A Web Browser (Firefox 💖)
 
+## Usage
+Run `python back/server.py 2319` and then go to `http://localhost:2319`
+
 ## To do list
 
 - [ ] Application Front End (HTML/JavaScript web page)
