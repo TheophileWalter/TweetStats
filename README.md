@@ -3,14 +3,24 @@ Web interface with python server that deliver tweet's statistics with spark on H
 
 ## To do list
 
-- [ ] Application Front End
-  - [ ] Main file (`index.html`)
+- [ ] Application Front End (HTML/JavaScript web page)
+  - [ ] Search a Tweet with keywords
+  - [ ] Graphical summary of the search result
+    - [ ] Number of tweet founds
+    - [ ] Geographical repartition
+    - [ ] Most used hashtags on these Tweets
+    - [ ] _Some others statistics_
   - [ ] Server query (`Javascript`)
   - [ ] Graphical display (`JavaScript`)
-- [ ] Application Back End
-  - [ ] Main file (`server.py`)
-  - [ ] HTTP manager
-  - [ ] Spark/HDFS script
+- [ ] Application Back End (python server)
+  - [ ] Serving HTML files
+  - [ ] Manage HTTP sessions
+  - [ ] Execute python code with specials URLs
+  - [ ] Creating a python object that contains informations about HTTP sessions and parameters
+- [ ] Request engine on Tweet database (Spark/HDFS)
+  - [ ] Import JSON file (replace current base or append)
+  - [ ] Perform queries on database
+  - [ ] Delete database
 - [ ] Remove secret NASA hacking code from our code
 
 ---
