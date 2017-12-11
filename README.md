@@ -1,6 +1,12 @@
 # TweetStats
 Web interface with python server that deliver tweet's statistics with spark on HDFS
 
+## Requirements
+- Python 2.7.12
+- Spark 2.2.1
+- Hadoop 2.7
+- A Web Browser (Firefox 💖)
+
 ## To do list
 
 - [ ] Application Front End (HTML/JavaScript web page)
