@@ -1,5 +1,5 @@
 # TweetStats
-Web interface with for python server that deliver tweet's statistics with spark on HDFS
+Web interface with python server that deliver tweet's statistics with spark on HDFS
 
 ## To do list
 
