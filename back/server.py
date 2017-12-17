@@ -2,7 +2,7 @@
 
 # TweetStats
 #
-# File          server.py
+# File          ./back/server.py
 # Description   Main file of the web server
 # Authors       Théophile Walter
 
