@@ -4,6 +4,7 @@ body {
 
 /* Pour des canvas redimensionnables */
 .resizeBox {
+    /*display: inline-block;*/
     /* Padding pour Google Chrome, l'élement n'est pas redimensionnable sans */
     padding-right: 15px;
     padding-bottom: 15px;

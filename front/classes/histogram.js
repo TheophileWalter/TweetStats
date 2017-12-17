@@ -20,6 +20,9 @@
     constructor(element) {
         // Appel du constructeur parent
         super(element);
+        // Configuration par défaut
+        this.margins = 20; // Marges internes dans le tableau
+        this.space = 5; // Taille entre les rectangles
     }
 
     /*
@@ -43,9 +46,7 @@
         super.draw(data);
 
         // Calcul des échelles
-        var margins = 20; // Marges internes dans le tableau
-        var space = 5; // Taille entre les rectangles
-        var columnWidth = ((this.width-2*margins) / data.length) - space; // Largeur d'un rectangle
+        var columnWidth = ((this.width-2*this.margins) / data.length) - this.space; // Largeur d'un rectangle
         var min = 0; // Valeur minimale de l'histogramme
         var max = 0; // Valeur maximale
         for (var i = 0; i < data.length; i++) {
@@ -56,7 +57,7 @@
                 min = data[i][1];
             }
         }
-        var scale = (max-min) / (this.height-2*margins); // Ratio taille réelle/taille de dessin
+        var scale = (max-min) / (this.height-2*this.margins); // Ratio taille réelle/taille de dessin
 
         // Dessine l'histogramme
         for (var i = 0; i < data.length; i++) {
@@ -64,8 +65,8 @@
             if (data[i][0] !== "%phantom%") {
                     
                 // Calcul de l'emplacement
-                var x = margins + i*(columnWidth+space);
-                var y = margins + (max-data[i][1])/scale;
+                var x = this.margins + i*(columnWidth+this.space);
+                var y = this.margins + (max-data[i][1])/scale;
                 var height = data[i][1]/scale;
                 
 
@@ -95,8 +96,8 @@
         }
 
         // L'axe des abcisses
-        var absY = margins + max/scale;
-        this._line(margins, absY, this.width-margins, absY);
+        var absY = this.margins + max/scale;
+        this._line(this.margins, absY, this.width-this.margins, absY);
         
     }
 

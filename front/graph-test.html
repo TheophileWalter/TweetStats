@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="classes/graph.js"></script>
         <script type="text/javascript" src="classes/histogram.js"></script>
+        <script type="text/javascript" src="classes/resizable-graph.js"></script>
     </head>
     <body>
         <h1>Tests the graphics drawing</h1>
@@ -28,6 +29,22 @@
             ];
             // On desine
             histo.draw(d1);
+        </script>
+        <!-- Equivalent du code ci-dessus en pure JS -->
+        <!-- <script type="text/javascript">
+            var graph = new ResizableGraph(500, 250, document.body, Histogram);
+            graph.setBackgroundColor("#F0F0F0");
+            graph.setForegroundColor("#AA0000");
+            graph.draw(d1);
+        </script> -->
+        <!-- Crée un histogramme assez grand aléatoire -->
+        <script type="text/javascript">
+            var d2 = [];
+            for (var i = 1; i <= 25; i++) {
+                d2.push([i, Math.random()*i]);
+            }
+            var g2 = new ResizableGraph(750, 400, document.body, Histogram);
+            g2.draw(d2);
         </script>
     </body>
 </html>
