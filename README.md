@@ -8,7 +8,8 @@ Web interface with python server that deliver tweet's statistics with spark on H
 - A Web Browser (Firefox 💖)
 
 ## Usage
-Run `python back/server.py 2319` and then go to `http://localhost:2319`
+Run `python back/server.py 2319` and then go to `http://localhost:2319`  
+Graphical tests : `http://localhost:2319/graph-test.html`
 
 ## To do list
 
@@ -22,7 +23,7 @@ Run `python back/server.py 2319` and then go to `http://localhost:2319`
   - [ ] Server query (Javascript)
   - [ ] Graphical display (JavaScript)
 - [ ] Application Back End (python server)
-  - [ ] Serving HTML files
+  - [X] Serving HTML files
   - [ ] Manage HTTP sessions
   - [ ] Execute python code with specials URLs
   - [ ] Creating a python object that contains informations about HTTP sessions and parameters

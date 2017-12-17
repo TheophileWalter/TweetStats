@@ -2,28 +2,28 @@
 
 # TweetStats
 #
-# File          ./back/server.py
-# Description   Main file of the web server
-# Authors       Théophile Walter
+# Fichier       ./back/server.py
+# Description   Fichier principal du serveur web
+# Auteurs       Théophile Walter
 
-# Basics imports
+# Imports de base
 import sys
 import os
 import atexit
 
-# For the HTTP server
+# Pour le serveur HTTP
 import SimpleHTTPServer
 import SocketServer
 
 
-# Get the parameters
+# Récupération des paramètres
 if sys.argv[1:]:
     port = int(sys.argv[1])
 else:
     port = 2319
 
 
-# Set the correct directory
+# Définition du répertoire courant dans le dossier "front/"
 back_path = os.path.dirname(os.path.abspath(__file__))
 root_path = os.path.dirname(back_path)
 front_path = root_path + '/front'
@@ -31,7 +31,7 @@ print ('Going to ' + front_path)
 os.chdir(front_path)
 
 
-# A handler for the HTTP requests
+# Classe pour traiter manuellement ou automatiquement les requêtes HTTP
 class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def __init__(self, req, client_addr, server):
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, req, client_addr, server)
@@ -40,10 +40,10 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
 
-# Creates a simple HTTP server
+# Crée un serveur HTTP
 httpd = SocketServer.TCPServer(('localhost', port), CustomHandler)
 
-# Close the socket on exit
+# Ferme le socket à la fin du programme
 # TODO: Does not works all times
 def close_socket():
     print ('closing socket.')
@@ -51,6 +51,6 @@ def close_socket():
 
 atexit.register(close_socket)
 
-# Run the server
+# Lance le serveur
 print ('serving at port ' + str(port))
 httpd.serve_forever()

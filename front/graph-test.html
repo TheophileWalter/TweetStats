@@ -2,10 +2,32 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>TweetStats</title>
+        <title>TweetStats - Graph Test</title>
         <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="classes/graph.js"></script>
+        <script type="text/javascript" src="classes/histogram.js"></script>
     </head>
     <body>
         <h1>Tests the graphics drawing</h1>
+        <!-- Canvas redimensionnable -->
+        <div class="resizeBox" style="width:500px;height:250px;" onmouseup="javascript:histo.resize(this.clientWidth-15, this.clientHeight-15);">
+            <canvas id="graph-1"></canvas>
+        </div>
+        <script type="text/javascript">
+            // Crée un histogramme simple
+            var g1 = document.getElementById("graph-1");
+            var histo = new Histogram(g1);
+            histo.setBackgroundColor("#F0F0F0");
+            histo.setForegroundColor("#AA0000");
+            // Quelques données
+            var d1 = [
+                ["Data 1", 40],
+                ["Data 2", -12, "#00AA00"],
+                ["%phantom%", 100], // Espace et hauteur max
+                ["Data 3", 89, "yellow"]
+            ];
+            // On desine
+            histo.draw(d1);
+        </script>
     </body>
 </html>
