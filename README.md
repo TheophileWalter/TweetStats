@@ -36,7 +36,7 @@ Graphical tests : `http://localhost:2319/graph-test.html`
 ---
 
 ```
-(•_•)
+( •_•)
 ( •_•)>⌐■-■
 (⌐■_■)
 ```
