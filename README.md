@@ -23,15 +23,15 @@ Graphical tests : `http://localhost:2319/graph-test.html`
   - [ ] Server query (Javascript)
   - [ ] HTML JSon explorer
 - [ ] Application Back End (python server)
-  - [X] Serving HTML files
+  - [X] Serving files
   - [ ] Manage HTTP sessions
   - [ ] Execute python code with specials URLs
   - [ ] Creating a python object that contains informations about HTTP sessions and parameters
-  - [ ] Make a list of most used words in the database for search auto-complete
 - [ ] Request engine on Tweet database (Spark/HDFS)
   - [ ] Import JSON file (replace current base or append)
   - [ ] Perform queries on database
   - [ ] Delete database
+  - [ ] Make a list of most used words in the database for search auto-complete
 - [ ] Remove secret NASA hacking code from our code
 
 ---
