@@ -7,7 +7,7 @@
 
  class Histogram extends Graph {
 
-     /*
+    /*
      * Constructeur de la classe Histogram
      * 
      * @params
