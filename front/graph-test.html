@@ -59,7 +59,22 @@
         <div id="json-exp"></div>
         <script type="text/javascript">
             var explorer = new JsonExplorer(document.getElementById("json-exp"));
-            var o1 = {"created_at":"Sun Jan 29 19:00:00 +0000 2017","id":825780552611422208,"id_str":"825780552611422208","text":"\u52aa\u529b\u3057\u305f\u3089\u8ab0\u3082\u304c\u7406\u60f3\u306e\u7d75\u3092\u63cf\u3051\u308b\u308f\u3051\u3058\u3083\u306a\u3044\u306b\u3083\u3002\u3067\u3082\u52aa\u529b\u3057\u305f\u3089\u7406\u60f3\u306e\u7d75\u306b\u8fd1\u3065\u3051\u308b\u306e\u3082\u78ba\u304b\u306a\u3093\u3060\u306b\u3083","source":"\u003ca href=\"http:\/\/twittbot.net\/\" rel=\"nofollow\"\u003etwittbot.net\u003c\/a\u003e","truncated":false,"in_reply_to_status_id":null,"in_reply_to_status_id_str":null,"in_reply_to_user_id":null,"in_reply_to_user_id_str":null,"in_reply_to_screen_name":null,"user":{"id":1696340552,"id_str":"1696340552","name":"\u304a\u7d75\u63cf\u304d\u306d\u3053bot","screen_name":"ekakineko_bot","location":null,"url":"http:\/\/digital-illust.com\/","description":"\u30c7\u30b8\u30bf\u30eb\u3067\u304a\u7d75\u304b\u304d\u3092\u59cb\u3081\u305f\u306b\u3083\u30fc\uff01\r\n\u304a\u7d75\u304b\u304d\u521d\u5fc3\u8005\u306e\u305f\u3081\u306b\u30a2\u30c9\u30d0\u30a4\u30b9\u3082\u3059\u308b\u306b\u3083\u3002\r\n\u305f\u307e\u306b\u3001\u30ea\u30d7\u3082\u98db\u3070\u3059\u304b\u3089\u3088\u308d\u3057\u304f\u306b\u3083\uff01\r\n\u3053\u308c\u304b\u3089\u7d75\u3092\u63cf\u304d\u59cb\u3081\u308b\u4eba\u9054\u3092\u5fdc\u63f4\u3057\u3066\u308b\u306b\u3083\uff01","protected":false,"verified":false,"followers_count":643,"friends_count":724,"listed_count":10,"favourites_count":18,"statuses_count":29006,"created_at":"Sat Aug 24 12:15:38 +0000 2013","utc_offset":28800,"time_zone":"Irkutsk","geo_enabled":false,"lang":"ja","contributors_enabled":false,"is_translator":false,"profile_background_color":"C0DEED","profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png","profile_background_tile":false,"profile_link_color":"1DA1F2","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/378800000350806117\/1035c5731b9e16a3f0798a0a6c5f9e33_normal.jpeg","profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/378800000350806117\/1035c5731b9e16a3f0798a0a6c5f9e33_normal.jpeg","default_profile":true,"default_profile_image":false,"following":null,"follow_request_sent":null,"notifications":null},"geo":null,"coordinates":null,"place":null,"contributors":null,"is_quote_status":false,"retweet_count":0,"favorite_count":0,"entities":{"hashtags":[],"urls":[],"user_mentions":[],"symbols":[]},"favorited":false,"retweeted":false,"filter_level":"low","lang":"ja","timestamp_ms":"1485716400660"};
+            var o1 = {
+                a: 123,
+                b: [1, 2, 3, "abc"],
+                c: {
+                    it: ["a", "b", {
+                        k: 422,
+                        l: null,
+                        m: undefined
+                        },
+                        "more"
+                    ],
+                    is: "hello",
+                    good: ''
+                },
+                end: true
+            };
             explorer.draw(o1);
         </script>
     </body>
