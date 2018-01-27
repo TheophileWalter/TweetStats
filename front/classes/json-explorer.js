@@ -142,6 +142,9 @@ class JsonExplorer extends HtmlDisplay {
 /*
  * Affiche/masque un élément d'un JSON
  * 
+ * @notes
+ *   Ajouté comme une méthode statique pour être appellé sans instance
+ * 
  * @params
  *   key: La clé de l'élément de l'objet
  */
