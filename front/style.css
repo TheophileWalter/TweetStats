@@ -24,8 +24,9 @@ body {
 }
 
 /* Pour le l'explorateur de JSON */
-body {
-    font-family: monospace;
+
+.json-block {
+    font-family: monospace
 }
 
 .json-object, .json-array {

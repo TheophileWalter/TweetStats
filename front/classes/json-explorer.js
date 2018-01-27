@@ -33,7 +33,7 @@ class JsonExplorer extends HtmlDisplay {
         var html = this._draw(data);
 
         // Affiche l'objet
-        this.element.innerHTML += html;
+        this.element.innerHTML += "<div class=\"json-block\">" + html + "</div>";
         
     }
 
