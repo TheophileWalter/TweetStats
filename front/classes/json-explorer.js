@@ -158,4 +158,4 @@ JsonExplorer._toogleObject = function(key) {
         eCollapsed.style.display = "none";
         eButton.className = "json-pointer-expended";
     }
-}//
+}
