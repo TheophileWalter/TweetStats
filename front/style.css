@@ -22,3 +22,47 @@ body {
     height: 100%;
     margin: 0;
 }
+
+/* Pour le l'explorateur de JSON */
+body {
+    font-family: monospace;
+}
+
+.json-object, .json-array {
+    padding-left: 18px;
+    margin-left: 2px;
+    border-left: 1px solid #CCCCCC;
+    display: none;
+}
+
+/*.json-object-content {
+   
+}
+
+.json-array-content {
+    
+}*/
+
+.json-pointer, .json-pointer-expended, .json-pointer-collapsed {
+    cursor: pointer;
+    display: inline;
+}
+
+.json-pointer-expended:before {
+    content: "\25BC"; /* Flèche vers le bas */
+    color: #AAAAAA;
+}
+
+.json-pointer-collapsed:before {
+    content: "\25BA"; /* Flèche vers la droite */
+    color: #AAAAAA;
+}
+
+.json-collapsed {
+    display: inline;
+    cursor: pointer;
+}
+
+.json-collapsed:after {
+    content: " ... ";
+}
