@@ -21,7 +21,7 @@ Graphical tests : `http://localhost:2319/graph-test.html`
     - [ ] Most used hashtags on these Tweets
     - [ ] _Some others statistics_
   - [ ] Server query (Javascript)
-  - [ ] HTML JSon explorer
+  - [X] HTML JSon explorer
 - [ ] Application Back End (python server)
   - [X] Serving files
   - [ ] Manage HTTP sessions
