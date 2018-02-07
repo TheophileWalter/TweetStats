@@ -37,6 +37,9 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, req, client_addr, server)
     def do_GET(self):
         # Handle here the request with self.path
+
+        if (self.path.startswith("/api/")):
+            return self.wfile.write("API")
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
 

@@ -9,8 +9,26 @@
         <script type="text/javascript" src="classes/resizable-graph.js"></script>
         <script type="text/javascript" src="classes/html-display.js"></script>
         <script type="text/javascript" src="classes/json-explorer.js"></script>
+        <script type="text/javascript" src="classes/search.js"></script>
     </head>
     <body>
-        <h1>Hello world!</h1>
+        <div id="navbar">
+            <table cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <span id="title">TweetStats</span>
+                    </td>
+                    <td id="new-search">
+                        <form action="#" onsubmit="javascript:searchTweet();">
+                            <input type="text" id="search-input" placeholder="Nouvelle recherche" />
+                            <button onclick="javascript:this.parentNode.submit();" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="results-feed">
+            <div class="search-result">Test en cours</div>
+        </div>
     </body>
 </html>

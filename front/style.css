@@ -1,5 +1,8 @@
 body {
     font-family: sans-serif;
+    background-color: #ecf0f1;
+    color: black;
+    text-align: center;
 }
 
 /* Pour des canvas redimensionnables */
@@ -66,4 +69,65 @@ body {
 
 .json-collapsed:after {
     content: " ... ";
+}
+
+/* Pour la page d'accueil */
+#navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    width: 100vw;
+    margin: 0;
+    padding: 10px;
+    color: #f5f6fa;
+    background-color: #0a3d62;
+}
+
+#title {
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+#new-search {
+    width: 100%;
+    text-align: right;
+    padding-right: 3vh;
+}
+
+#new-search > form > input {
+    width: 15vw;
+    height: 3vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.3vh;
+}
+
+#new-search > form > button {
+    width: 3.6vh;
+    height: 3.6vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    vertical-align: middle;
+    background-image: url(images/search.svg);
+    background-repeat: no-repeat;
+    background-size: 3.6vh 3.6vh;
+}
+
+#results-feed {
+    text-align: center;
+    width: 100%;
+    padding-top: 10vh;
+}
+
+/* Résultat d'une recherche */
+.search-result {
+    display: inline-block;
+    background-color: #F0F0F0;
+    width: 80%;
+    border: 1px solid #B0B0B0;
+    border-radius: 30px;
+    margin-bottom: 5vh;
+    padding: 5vh;
 }
