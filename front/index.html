@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <title>TweetStats</title>
         <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript" src="classes/main.js"></script>
+        <script type="text/javascript" src="classes/util.js"></script>
         <script type="text/javascript" src="classes/graph.js"></script>
         <script type="text/javascript" src="classes/histogram.js"></script>
         <script type="text/javascript" src="classes/resizable-graph.js"></script>
@@ -27,8 +29,10 @@
                 </tr>
             </table>
         </div>
-        <div id="results-feed">
-            <div class="search-result">Test en cours</div>
-        </div>
+        <div id="results-feed"></div>
+        <script type="text/javascript">
+            // Charge les recherches précédentes
+            loadSearchs();
+        </script>
     </body>
 </html>

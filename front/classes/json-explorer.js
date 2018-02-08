@@ -132,7 +132,7 @@ class JsonExplorer extends HtmlDisplay {
      *   Le nombre d'attributs dans "o"
      */
     _objectLength(o) {
-        i = 0;
+        var i = 0;
         for (var k in o) i++;
         return i;
     }

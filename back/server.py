@@ -10,6 +10,7 @@
 import sys
 import os
 import atexit
+import md5
 
 # Pour le serveur HTTP
 import SimpleHTTPServer
@@ -30,17 +31,45 @@ front_path = root_path + '/front'
 print ('Going to ' + front_path)
 os.chdir(front_path)
 
+# Traite une demande à l'API en fonction du chemin d'accès
+def preceedRequest(path):
+
+    # Lancement d'une recherhce
+    if (path.startswith("/api/search/")):
+
+        #TODO: Lancer le script de recherche
+
+        # Calcul l'id (md5 de la recherche)
+        m = md5.new()
+        m.update(path[12:])
+        hashid = m.hexdigest()
+        return '{"status":"1","id":"' + hashid + '"}'
+
+    # Demande de résultat d'une recherche
+    elif (path.startswith("/api/get-response/")):
+
+        # TODO: Vérifier si la réponse est prête et la retourner
+        hashid = path[18:]
+        return '{"status":"1","id":"' + hashid + '","result":{}}'
+
+    # Erreur
+    else:
+        return '{"status":"0","error":"Unknown API action!"}'
 
 # Classe pour traiter manuellement ou automatiquement les requêtes HTTP
 class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def __init__(self, req, client_addr, server):
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, req, client_addr, server)
+
     def do_GET(self):
         # Handle here the request with self.path
-
         if (self.path.startswith("/api/")):
-            return self.wfile.write("API")
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            return self.wfile.write(preceedRequest(self.path))
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
+
 
 
 # Crée un serveur HTTP
