@@ -36,7 +36,7 @@ function drawCoordinates(x,y,color){
     var ctx = document.getElementById("canvas").getContext("2d");
 
 	// calcul and change x to opposite value
-	var resN = -x * (xcoeffN * ((centerN - (30/ 10))/centerN) + centerN;
+	var resN = -x * coeffN * ((centerN - (30/ 10))/centerN) + centerN;
 	var resE = y * coeffE * ((centerE + (25 / 10))/centerE) + centerE;
 
 	// check if values are 0
