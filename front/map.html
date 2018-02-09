@@ -26,6 +26,8 @@ background.src = "images/worldmap.svg";
 
 background.onload = function(){
     ctx.drawImage(background,0,0);   
+	drawCoordinates(120,100,"#8B0000");
+	drawCoordinates(110,100,"#8A2BE2");
 }
 
 // Draw dots with coordinates
@@ -39,9 +41,6 @@ function drawCoordinates(x,y,color){
     ctx.arc(x, y, 10, 0, 2*Math.PI);
     ctx.fill();
 }
-
-drawCoordinates(120,100,"#8B0000");
-drawCoordinates(110,100,"#8A2BE2");
 
 // for colors
 //https://www.w3schools.com/tags/ref_colornames.asp
