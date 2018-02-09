@@ -25,6 +25,7 @@ function loadSearchs() {
     var list = util.getCookie("tweetstats_list");
 
     // Vérifie si le cookie de liste existe
+    var isThereSearchs = false;
     if(list !== undefined) {
         list = list.split("-");
         // Récupère les recherches
@@ -32,9 +33,16 @@ function loadSearchs() {
             var search = util.getCookie("tweetstats_search_" + list[i]);
             if (search !== undefined) {
                 searchList[list[i]] = new Search(search, parent);
+                isThereSearchs = true;
             }
         }
     }
+
+    // Si il n'y a pas de requêtes, on affiche un message
+    if (!isThereSearchs) {
+        document.getElementById("results-feed").innerHTML = "Vous n'avez pas de recherches pour le moment \uD83D\uDE41";
+    }
+
 }
 
 /*

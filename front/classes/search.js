@@ -31,14 +31,27 @@
         this.requestId   = null; // L'identifiant de la requête (pour attendre la réponse)
         this.interval    = null; // L'intervalle d'attente (setInterval)
 
+        // Vérifie si la recherche a du contenu
+        if (util.arrayAllEmpty(this.words)) {
+            alert("Erreur : Votre recherche est vide !");
+            this.remove(true);
+            return;
+        }
+
         // Variable contenant l'environnement local pouvant être utilisée dans les méthodes asynchrones
         let searchThis = this;
+
+        // Si cette recherche est la première affiché, on supprime le message
+        if (util.objectIsEmpty(searchList)) {
+            document.getElementById("results-feed").innerHTML = '';
+        }
 
         // Crée le conteneur
         this.element = document.createElement("div");
         this.element.className = "search-result";
         
         // Y ajoute les termes de la recherche (cliquer dessus pour rechercher)
+        this.element.innerHTML += "<div class=\"search-title\">Termes de la recherche</div>";
         for (var i = 0; i < this.words.length; i++) {
             if (this.words[i] !== "") {
                 this.element.innerHTML += "<span class=\"search-word\" onclick=\"javascript:searchTweet(util.decodeHtml(this.innerHTML));\">" + util.escapeHtml(this.words[i]) + "</span>"; 
@@ -55,28 +68,10 @@
         this.delete = document.createElement("div");
         this.delete.className = "delete-search";
         var deleteButton = document.createElement("span");
-        deleteButton.onclick = function(e) {
-            
-            // Confirmation
-            if (!confirm("Voulez-vous vraiment supprimer cette recherche ?\nCette action est irréversible.")) {
-                return;
-            }
-
-            // Suppression de la recherche
-            if (searchThis.interval !== null) {
-                clearInterval(searchThis.interval);
-            }
-            delete searchList[searchThis.requestId];
-            searchThis.element.remove();
-            if (util.getCookie("tweetstats_search_" + searchThis.requestId) !== undefined) {
-                util.setCookie("tweetstats_search_" + searchThis.requestId, '', -1);
-            }
-            var list = util.getCookie("tweetstats_list");
-            if (list !== undefined) {
-                util.setCookie("tweetstats_list", list.replace(searchThis.requestId + "-", ""), 30);
-            }
-
-        };
+        deleteButton.onclick = function() {
+            // Doit être appelé de cette façon pour que le "this" de la fonction ne soit pas celui de l'objet DOM cliqué
+            searchThis.remove();
+        }
         deleteButton.innerHTML = "supprimer";
         this.delete.appendChild(deleteButton);
         this.element.appendChild(this.delete);
@@ -185,9 +180,56 @@
      */
     display(object) {
         // TODO: Implémenter l'affichage
-        this.content.innerHTML = "";
+        this.content.innerHTML = "<div class=\"search-title\">Résultat brut</div>";
         var jse = new JsonExplorer(this.content);
         jse.draw(object);
+    }
+
+    /*
+     * Supprime la recherche de la page
+     * 
+     * @params
+     *   skipConfirmation: Un booléen indiquant si il faut sauter la demande de confirmation (facultatif, false par défaut)
+     * 
+     * @notes
+     *   Supprime la recherche du contenu HTML, des variables JavaScript et des cookies
+     *   Cette action est irréversible !
+     *   L'utilisation de l'instance de classe associée est fortement déconseillée après l'appel à cette méthode
+     */
+    remove(skipConfirmation) {
+            
+        // Confirmation
+        if (skipConfirmation !== true && !confirm("Voulez-vous vraiment supprimer cette recherche ?\nCette action est irréversible.")) {
+            return;
+        }
+
+        // Suppression de la recherche
+        if (this.interval !== null) {
+            clearInterval(this.interval);
+        }
+        delete searchList[this.requestId];
+        if (this.element !== null) {
+            this.element.remove();
+        }
+
+        // Tente de récupére l'identifiant si il n'existe pas
+        if (this.requestId === null) {
+            this.requestId = util.md5(this.string);
+        }
+
+        if (util.getCookie("tweetstats_search_" + this.requestId) !== undefined) {
+            util.setCookie("tweetstats_search_" + this.requestId, '', -1);
+        }
+        var list = util.getCookie("tweetstats_list");
+        if (list !== undefined) {
+            util.setCookie("tweetstats_list", list.replace(this.requestId + "-", ""), 30);
+        }
+
+        // Vérifie si il faut afficher un message si il ne reste plus de recherches
+        if (util.objectIsEmpty(searchList)) {
+            document.getElementById("results-feed").innerHTML = "Vous n'avez pas de recherches pour le moment \uD83D\uDE41";
+        }
+
     }
 
     /*
@@ -200,7 +242,7 @@
         this.content.innerHTML = "<span class=\"error\">" + util.escapeHtml(string) + "</span>";  
     }
 
- }
+}
 
 /*
  * Effectue une recherche dans les tweets

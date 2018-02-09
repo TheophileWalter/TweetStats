@@ -28,7 +28,7 @@ else:
 back_path = os.path.dirname(os.path.abspath(__file__))
 root_path = os.path.dirname(back_path)
 front_path = root_path + '/front'
-print ('Going to ' + front_path)
+print ('Moving working directory to ' + front_path)
 os.chdir(front_path)
 
 # Traite une demande à l'API en fonction du chemin d'accès
@@ -62,14 +62,14 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, req, client_addr, server)
 
     def do_GET(self):
-        # Handle here the request with self.path
+        # Récupère les requêtes qui concernent l'API pour les traiter manuellement
         if (self.path.startswith("/api/")):
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
             return self.wfile.write(preceedRequest(self.path))
+        # Si la requête concerne un fichier classique, on laisse faire le serveur
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
-
 
 
 # Crée un serveur HTTP

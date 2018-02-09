@@ -9,6 +9,7 @@
         <script type="text/javascript" src="classes/resizable-graph.js"></script>
         <script type="text/javascript" src="classes/html-display.js"></script>
         <script type="text/javascript" src="classes/json-explorer.js"></script>
+        <script type="text/javascript" src="classes/map.js"></script>
     </head>
     <body style="padding-bottom: calc(100vh - 1em);">
         <h1>Tests the graphics drawing</h1>
@@ -27,7 +28,7 @@
             // Quelques données
             var d1 = [
                 ["Data 1", 40],
-                ["Data 2", -12, "#00AA00"],
+                ["Data 2", -12, 10, "#00AA00"],
                 ["%phantom%", 100], // Espace et hauteur max
                 ["Data 3", 89, "yellow"]
             ];
@@ -77,5 +78,24 @@
             };
             explorer.draw(o1);
         </script>
+
+        
+        <!-- Dessin de carte du monde -->
+        <script type="text/javascript">
+            var geoData = [
+                [0, 0, 10, "#FFA500"],        // (0, 0)
+                [52, 0, 10, "#FF0000"],       // London
+                [25.7, -80.8, 10, "#87CEFA"], // Miami
+                [-7.6, -35, 10, "#FF69B4"],   // Eastest in Bresil
+                [-42.4, 147, 10, "#000000"],  // South in Australia
+                [8, 77.5, 10, "#000000"],     // South in India
+                [34, 127, 10, "#000000"],     // South Corea
+                [64, -19, 10, "#000000"],     // Island
+                [53, -168, 10, "#000000"]     // west America
+            ]
+            var graph = new ResizableGraph(500, 250, document.body, Map);
+            graph.draw(geoData);
+        </script>
+
     </body>
 </html>

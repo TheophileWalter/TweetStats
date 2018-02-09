@@ -14,18 +14,18 @@ Graphical tests : `http://localhost:2319/graph-test.html`
 ## To do list
 
 - [ ] Application Front End (HTML/JavaScript web page)
-  - [ ] Search a Tweet with keywords
+  - [X] Search a Tweet with keywords
   - [ ] Graphical summary of the search result
     - [ ] Number of tweet founds
-    - [ ] Geographical repartition
+    - [X] Geographical repartition
     - [ ] Most used hashtags on these Tweets
     - [ ] _Some others statistics_
-  - [ ] Server query (Javascript)
+  - [X] Server query (Javascript)
   - [X] HTML JSon explorer
 - [ ] Application Back End (python server)
   - [X] Serving files
-  - [ ] Manage HTTP sessions
-  - [ ] Execute python code with specials URLs
+  - [X] Manage HTTP sessions
+  - [X] Execute python code with specials URLs
   - [ ] Creating a python object that contains informations about HTTP sessions and parameters
 - [ ] Request engine on Tweet database (Spark/HDFS)
   - [ ] Import JSON file (replace current base or append)
