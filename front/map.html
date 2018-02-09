@@ -26,7 +26,9 @@ background.src = "images/worldmap.svg";
 
 //importants variables
 let centerN= (canvas.height / 2) + 28;
-let centerE = (canvas.width / 2) - 20;
+let centerE = (canvas.width / 2) - 22;
+let coeffN = 3.15;
+let coeffE = 2.72;
 
 // Draw dots with coordinates
 function drawCoordinates(x,y,color){
@@ -34,9 +36,8 @@ function drawCoordinates(x,y,color){
     var ctx = document.getElementById("canvas").getContext("2d");
 
 	// calcul and change x to opposite value
-	var resN = -x * ((centerN - (30/ 10))/centerN) + centerN;
-	var resE = y * ((centerE + (25 / 10))/centerE) + centerE;
-		
+	var resN = -x * (xcoeffN * ((centerN - (30/ 10))/centerN) + centerN;
+	var resE = y * coeffE * ((centerE + (25 / 10))/centerE) + centerE;
 
 	// check if values are 0
 	var resY = (x == 0 ? centerN : resN);
@@ -54,10 +55,21 @@ background.onload = function(){
     ctx.drawImage(background, 0, 0);
 	//(0, 0)
 	drawCoordinates(0, 0, "#FF00FF");
-	//(0, 1)
-	drawCoordinates(-25, 1, "#FFA500");
-	//(25, -80) Miami is almost 3 times further
-	drawCoordinates(25.7*3, -80.8*3, "#7CFC00");
+	//London
+	drawCoordinates(52, 1, "#7CFC00");
+	//Miami
+	drawCoordinates(25.7, -80.8, "#7CFC00");
+	//Eastest in Bresil
+	drawCoordinates(-7.6, -35, "#7CFC00");
+	//South in Australia
+	drawCoordinates(-42.4, 147, "#FFA500");
+	//South in India
+	drawCoordinates(8, 77.5, "#FFA500");
+	//South Corea
+	drawCoordinates(35, 127, "#FFA500");
+	//Island
+	drawCoordinates(64, -19, "#FFA500");
+	
 }
 
 // for colors
