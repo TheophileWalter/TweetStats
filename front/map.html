@@ -18,26 +18,24 @@ div > canvas {
 var cs = document.getElementById("canvas");
 var ctx = cs.getContext("2d");
 
-cs.width = 950;
-cs.height = 620;
+cs.width = 2521;
+cs.height = 1260;
 
 var background = new Image();
 background.src = "images/worldmap.svg";
 
 //importants variables
-let centerN= (canvas.height / 2) + 28;
-let centerE = (canvas.width / 2) - 22;
-let coeffN = 3.15;
-let coeffE = 2.72;
+let centerN= (canvas.height / 2);
+let centerE = (canvas.width / 2);
 
 // Draw dots with coordinates
-function drawCoordinates(x,y,color){
-    var dotSize = 3;
+function drawCoordinates(x, y, color){
+    var dotSize = 9;
     var ctx = document.getElementById("canvas").getContext("2d");
-
+	
 	// calcul and change x to opposite value
-	var resN = -x * coeffN * ((centerN - (30/ 10))/centerN) + centerN;
-	var resE = y * coeffE * ((centerE + (25 / 10))/centerE) + centerE;
+	var resN = -x * (canvas.height / 180) + centerN;
+	var resE = y * (canvas.width / 360) + centerE;
 
 	// check if values are 0
 	var resY = (x == 0 ? centerN : resN);
@@ -53,23 +51,31 @@ function drawCoordinates(x,y,color){
 // Draw all
 background.onload = function(){
     ctx.drawImage(background, 0, 0);
+	//uncomment for tests
+	//verifiedDots(ctx);
+}
+
+function verifiedDots(ctx) {
 	//(0, 0)
-	drawCoordinates(0, 0, "#FF00FF");
+	drawCoordinates(0, 0, "#FFA500")
 	//London
-	drawCoordinates(52, 1, "#7CFC00");
+	drawCoordinates(52, 0, "#FF0000"); // red
 	//Miami
-	drawCoordinates(25.7, -80.8, "#7CFC00");
+	drawCoordinates(25.7, -80.8, "#87CEFA"); //light blue
 	//Eastest in Bresil
-	drawCoordinates(-7.6, -35, "#7CFC00");
+	drawCoordinates(-7.6, -35, "#FF69B4"); //hot pink
 	//South in Australia
-	drawCoordinates(-42.4, 147, "#FFA500");
+	drawCoordinates(-42.4, 147, "#000000");
 	//South in India
-	drawCoordinates(8, 77.5, "#FFA500");
+	drawCoordinates(8, 77.5, "#000000");
 	//South Corea
-	drawCoordinates(35, 127, "#FFA500");
+	drawCoordinates(34, 127, "#000000");
 	//Island
-	drawCoordinates(64, -19, "#FFA500");
-	
+	drawCoordinates(64, -19, "#000000");
+	//west America
+	drawCoordinates(53, -168, "#000000");
+	//test perso
+	drawCoordinates(76.746264, 68.093146, "#DC143C");
 }
 
 // for colors
