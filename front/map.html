@@ -24,22 +24,40 @@ cs.height = 620;
 var background = new Image();
 background.src = "images/worldmap.svg";
 
-background.onload = function(){
-    ctx.drawImage(background,0,0);   
-	drawCoordinates(120,100,"#8B0000");
-	drawCoordinates(110,100,"#8A2BE2");
-}
+//importants variables
+let centerN= (canvas.height / 2) + 28;
+let centerE = (canvas.width / 2) - 20;
 
 // Draw dots with coordinates
 function drawCoordinates(x,y,color){
-    var dotSize = 10;
+    var dotSize = 3;
     var ctx = document.getElementById("canvas").getContext("2d");
 
+	// calcul and change x to opposite value
+	var resN = -x * ((centerN - (30/ 10))/centerN) + centerN;
+	var resE = y * ((centerE + (25 / 10))/centerE) + centerE;
+		
+
+	// check if values are 0
+	var resY = (x == 0 ? centerN : resN);
+	var resX = (y == 0 ? centerE : resE);
+	
     ctx.fillStyle = color;
 
     ctx.beginPath();
-    ctx.arc(x, y, 10, 0, 2*Math.PI);
+    ctx.arc(resX, resY, dotSize, 0, 2*Math.PI);
     ctx.fill();
+}
+
+// Draw all
+background.onload = function(){
+    ctx.drawImage(background, 0, 0);
+	//(0, 0)
+	drawCoordinates(0, 0, "#FF00FF");
+	//(0, 1)
+	drawCoordinates(-25, 1, "#FFA500");
+	//(25, -80) Miami is almost 3 times further
+	drawCoordinates(25.7*3, -80.8*3, "#7CFC00");
 }
 
 // for colors
