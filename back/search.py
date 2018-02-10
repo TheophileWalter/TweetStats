@@ -24,6 +24,7 @@ sc = SparkContext("local", "TweetStats - Search Engine")
 import sys
 import os
 import re # Expressions régulières
+import json
 
 # Vérification des paramètres
 if (len(sys.argv) < 3):
@@ -35,8 +36,8 @@ back_path = os.path.dirname(os.path.abspath(__file__))
 root_path = os.path.dirname(back_path)
 front_path = root_path + '/front'
 
-# Charge le fichier des tweets dans une RDD
-tweets_file = sc.textFile(root_path + '/data/tweets.json')
+# Charge le fichier des tweets dans une RDD et décode le JSON
+tweets_file = sc.textFile(root_path + '/data/tweets.json').map(lambda line: json.loads(line))
 
 # Affiche le nombre de lignes dans le fichier
 #print (rdd_size(tweets_file))
@@ -60,17 +61,28 @@ def search_all_array_in_string(array, string):
     return True
 
 # Recherche simple, les tweets contenant au moins un des mots
-rdd_one_word = tweets_file.filter(lambda e: search_array_in_string(words, e))
+rdd_one_word = tweets_file.filter(lambda e: search_array_in_string(words, e['text']))
 
 # Recherche les tweets contenant TOUS les mots
-rdd_all_words = tweets_file.filter(lambda e: search_all_array_in_string(words, e))
+rdd_all_words = tweets_file.filter(lambda e: search_all_array_in_string(words, e['text']))
+
+# Récupère les coordonnées
+rdd_coords = rdd_one_word.filter(lambda e: e['coordinates'] != None and e['coordinates']['type'] == 'Point').map(lambda e: e['coordinates']['coordinates'])
 
 # Ouverture du fichier pour marquer les réponses
 out_path = root_path + '/data/results/' + hashid + '_temp.json'
 out = open(out_path, 'w') 
 out.write('{')
 out.write('"countOneOf":"' + str(rdd_one_word.count()) + '",') # Nombre de tweets contenant au moins un des mots
-out.write('"countAll":"' + str(rdd_all_words.count()) + '"') # Nombre de tweets contenant tous les mots
+out.write('"countAll":"' + str(rdd_all_words.count()) + '",') # Nombre de tweets contenant tous les mots
+
+# Les tweets localisés
+out.write('"coords":[')
+locs = ''
+for loc in rdd_coords.collect():
+    locs += '[' + str(loc[0]) + ',' + str(loc[1]) + '],'
+out.write(locs[:-1] + ']')
+
 out.write('}')
 out.close()
 

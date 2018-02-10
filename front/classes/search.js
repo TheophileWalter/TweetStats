@@ -186,12 +186,36 @@
      */
     display(object) {
 
-        this.content.innerHTML = "<div class=\"search-title\">Tweets contenant au moins un de ces mots : " + util.escapeHtml(object.result.countOneOf) + "</div>";
-        this.content.innerHTML += "<div class=\"search-title\">Tweets contenant tous ces mots : " + util.escapeHtml(object.result.countAll) + "</div>";
+        // Nombre de tweets
+        if (this.words.length == 1) {
+            this.content.innerHTML = "<div class=\"search-title\">Tweets contenant ce mot : " + util.escapeHtml(object.result.countOneOf) + "</div><br />";
+        } else {
+            this.content.innerHTML = "<div class=\"search-title\">Tweets contenant tous ces mots : " + util.escapeHtml(object.result.countAll) + "</div><br />";
+            this.content.innerHTML += "<div class=\"search-title\">Tweets contenant au moins un de ces mots : " + util.escapeHtml(object.result.countOneOf) + "</div><br />";
+        }
+
+        // Prépare la localisation
+        var coords = [];
+        for (var i = 0; i < object.result.coords.length; i++) {
+            coords[i] = [object.result.coords[i][1], object.result.coords[i][0], 5, "#AA0000"];
+        }
+
+        // Afiche une carte si il y a des données
+        // Se fait en dernier cas il contient des méthodes qui attendent le chargement d'une image,
+        // il faut donc que les autres modifications soient terminées
+        if (coords.length == 0) {
+            this.content.innerHTML += "<div class=\"search-title\">Aucune localisation disponnible pour cette recherche.</div><br />";
+        } else {
+            this.content.innerHTML += "<div class=\"search-title\">Localisation des tweets (" + coords.length + " tweet" + (coords.length > 1 ? "s" : "") + " localisé" + (coords.length > 1 ? "s" : "") + ")</div><br />";
+            var graph = new ResizableGraph(500, 250, this.content, Map);
+            graph.draw(coords);
+        }
 
         // TODO: Implémenter l'affichage
-        this.content.innerHTML += "<div class=\"search-title\">Résultat brut</div>";
-        var jse = new JsonExplorer(this.content);
+        var jsonDiv = document.createElement("div");
+        this.content.appendChild(jsonDiv);
+        jsonDiv.innerHTML += "<div class=\"search-title\">Résultat brut</div>";
+        var jse = new JsonExplorer(jsonDiv);
         jse.draw(object);
     }
 

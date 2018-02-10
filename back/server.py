@@ -51,11 +51,12 @@ def proceedRequest(path):
         m.update(query)
         hashid = m.hexdigest()
 
-        # Lance le script de recherche
+        # Lance le script de recherche si le résultat n'existe pas déjà
         # Il s'exécute à part, de cette façon il ne bloque pas le serveur
         #os.system('spark-submit "' + root_path + '/back/search.py" ' + escapeString(query) + ' ' + escapeString(hashid))
         #os.spawnl(os.P_NOWAIT, 'spark-submit', [root_path + '/back/search.py', query, hashid])
-        subprocess.Popen(["spark-submit", root_path + '/back/search.py', query, hashid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if (not os.path.exists(root_path + '/data/results/' + hashid + '.json')):
+            subprocess.Popen(["spark-submit", root_path + '/back/search.py', query, hashid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         # On renvoie l'identifiant de la recherche au client pour qu'il puisse récupérer le résultat
         return '{"status":"1","id":"' + hashid + '"}'
