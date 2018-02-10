@@ -26,7 +26,7 @@
         this.content     = null; // Le sous élement DOM dans lequel afficher le contenu
         this.delete      = null; // Bouton de suppression
         this.words       = string.split(/[\s,.;:!?]/g);
-        this.url         = "/api/search/" + string;
+        this.url         = "/api/search/" + encodeURIComponent(string);
         this.responseUrl = "/api/get-response/";
         this.requestId   = null; // L'identifiant de la requête (pour attendre la réponse)
         this.interval    = null; // L'intervalle d'attente (setInterval)
@@ -112,44 +112,50 @@
                         // Enregistre l'identifiant
                         searchThis.requestId = resp.id;
 
+                        // Fonction d'attente de la réponse
+                        var waitResponse = function() {
+                            var xhr2 = new XMLHttpRequest();
+                            xhr2.open("GET", searchThis.responseUrl + searchThis.requestId, true);
+                            xhr2.onload = function (e) {
+                                if (xhr2.readyState === 4) {
+                                    if (xhr2.status === 200) {
+                                        // Récupère la réponse
+                                        var resp2 = JSON.parse(xhr2.responseText);
+                                        if (resp2.status === '1' && resp2.ready === '1') {
+                                            // On supprime l'interval
+                                            clearInterval(searchThis.interval);
+                                            searchThis.interval = null;
+                                            // Affiche le résultat
+                                            searchThis.display(resp2);
+                                        } else if (resp2.status !== '1') {
+                                            // On supprime l'interval
+                                            clearInterval(searchThis.interval);
+                                            searchThis.interval = null;
+                                            searchThis.error("API error: " + resp2.error);
+                                        }
+                                    } else {
+                                        searchThis.error("Erreur du serveur !");
+                                        // On supprime l'interval
+                                        clearInterval(searchThis.interval);
+                                        searchThis.interval = null;
+                                    }
+                                }
+                            };
+                            xhr2.onerror = function (e) {
+                                searchThis.error("Erreur inconnue !");
+                                // On supprime l'interval
+                                clearInterval(searchThis.interval);
+                                searchThis.interval = null;
+                            };
+                            xhr2.send(null);
+                        };
+
                         // Crée l'interval d'attente de la réponse
                         // Demande au serveur toutes les secondes si la réponse est prête
-                        searchThis.interval = setInterval(
-                            function() {
-                                var xhr2 = new XMLHttpRequest();
-                                xhr2.open("GET", searchThis.responseUrl + searchThis.requestId, true);
-                                xhr2.onload = function (e) {
-                                    if (xhr2.readyState === 4) {
-                                        if (xhr2.status === 200) {
-                                            // On supprime l'interval
-                                            clearInterval(searchThis.interval);
-                                            searchThis.interval = null;
-                                            // Récupère la réponse
-                                            var resp2 = JSON.parse(xhr2.responseText);
-                                            if (resp2.status === '1') {
-                                                // Affiche le résultat
-                                                searchThis.display(resp);
-                                            } else {
-                                                searchThis.error("API error: " + resp2.error);
-                                            }
-                                        } else {
-                                            searchThis.error("Erreur du serveur !");
-                                            // On supprime l'interval
-                                            clearInterval(searchThis.interval);
-                                            searchThis.interval = null;
-                                        }
-                                    }
-                                };
-                                xhr2.onerror = function (e) {
-                                    searchThis.error("Erreur inconnue !");
-                                    // On supprime l'interval
-                                    clearInterval(searchThis.interval);
-                                    searchThis.interval = null;
-                                };
-                                xhr2.send(null);
-                            },
-                            1000
-                        );
+                        searchThis.interval = setInterval(waitResponse, 5000);
+
+                        // On vérifie immédiatement si la réponse est prête (si déjà en cache)
+                        waitResponse();
 
                     } else {
                         searchThis.error("API error: " + resp.error);
@@ -179,8 +185,12 @@
      *   result: L'objet JSON tel que retourné par l'API TweetStats
      */
     display(object) {
+
+        this.content.innerHTML = "<div class=\"search-title\">Tweets contenant au moins un de ces mots : " + util.escapeHtml(object.result.countOneOf) + "</div>";
+        this.content.innerHTML += "<div class=\"search-title\">Tweets contenant tous ces mots : " + util.escapeHtml(object.result.countAll) + "</div>";
+
         // TODO: Implémenter l'affichage
-        this.content.innerHTML = "<div class=\"search-title\">Résultat brut</div>";
+        this.content.innerHTML += "<div class=\"search-title\">Résultat brut</div>";
         var jse = new JsonExplorer(this.content);
         jse.draw(object);
     }

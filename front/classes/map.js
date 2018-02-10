@@ -65,7 +65,6 @@ class Map extends Graph {
         // Dessine les données
 
         // Affichage de la carte en fond
-        console.log(this.canvas.width + ", " + this.canvas.height);
         this.context.drawImage(this.background, 0, 0, this.canvas.width, this.canvas.height);
 
         // Supprimé car géré par la classe mère

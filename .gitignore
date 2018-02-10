@@ -1,6 +1,9 @@
 # Big Data
 data/tweets.json
 
+# Seach cache
+data/results/*.json
+
 # Spark
 metastore_db/*
 derby.log

@@ -4,7 +4,7 @@ Web interface with python server that deliver tweet's statistics with spark on H
 ## Requirements
 - Python 2.7.12
 - Spark 2.2.1
-- Hadoop 2.7 _(maybe not)_
+- Hadoop 2.7
 - A Web Browser (Firefox 💖)
 
 ## Usage
