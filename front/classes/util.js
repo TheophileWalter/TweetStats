@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/util.js
  * Description   Contient des fonctions utiles
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
 var util = {

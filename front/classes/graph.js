@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/graph.js
  * Description   Classe principale pour la représentation d'un graphique, doit être étendue par des classes filles
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
 class Graph {

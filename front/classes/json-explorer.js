@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/json-explorer.js
  * Description   Classe pour le dessin d'un explorateur de JSON, étend HtmlDisplay
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
 class JsonExplorer extends HtmlDisplay {

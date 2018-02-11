@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/histogram.js
  * Description   Classe pour le dessin d'un histogramme, étend Graph
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
  class Histogram extends Graph {

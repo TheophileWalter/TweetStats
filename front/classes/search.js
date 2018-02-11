@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/search.js
  * Description   Classe principale pour effectuer une recherche dans les tweets ainsi que la fonction de recherche
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
  class Search {

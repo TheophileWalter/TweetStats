@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/resizable-graph.js
  * Description   Classe pour la création et la gestion d'un Graph redimensionnable
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
  class ResizableGraph {

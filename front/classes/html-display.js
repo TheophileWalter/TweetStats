@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/html-display.js
  * Description   Classe principale pour la représentation de données en HTML, doit être étendue par des classes filles
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
 class HtmlDisplay {
