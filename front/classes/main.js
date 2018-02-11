@@ -2,7 +2,7 @@
  *
  * Fichier       ./front/classes/main.js
  * Description   Fichier JavaScript principal, contient les outils de chargement des sessions précédentes ainsi que ce de gestion de la session actuelle
- * Auteurs       Théophile Walter
+ * Auteurs       Théophile Walter, Alexis Marembert
  */
 
 // Contiendra la liste des recherches effectuées
@@ -10,7 +10,7 @@
 var searchList = {};
 
 /*
- * Charge les requêtes depuis les cookies
+ * Charge les requêtes depuis les cookies 
  * 
  * @params
  * 
@@ -51,7 +51,7 @@ function loadSearchs() {
  * @params
  *   search: La chaîne de caractères de la requête
  * 
- * @return
+ * @return 
  *   true:  si la requête existe
  *   false: si la requête n'existe pas
  */

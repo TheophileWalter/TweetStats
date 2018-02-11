@@ -64,7 +64,7 @@ var util = {
      *   undefined si le cookie n'existe pas
      * 
      * @notes
-     *   Source : https://www.w3schools.com/js/js_cookies.asp
+     *   Source : https://www.w3schools.com/js/js_cookies.asp 
      */
     getCookie: function(cname) {
         var name = cname + "=";

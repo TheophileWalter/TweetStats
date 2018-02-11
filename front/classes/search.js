@@ -182,7 +182,7 @@
      * Affiche le résultat d'une recherche
      * 
      * @params
-     *   result: L'objet JSON tel que retourné par l'API TweetStats
+     *   result: L'objet JSON tel que retourné par l'API TweetStats 
      */
     display(object) {
 

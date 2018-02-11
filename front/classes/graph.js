@@ -56,7 +56,7 @@ class Graph {
      * Change la couleur d'arrière-plan
      * 
      * @params
-     *   color:  La couleur au format HTML/CSS
+     *   color:  La couleur au format HTML/CSS 
      *   redraw: Faut-il redéssiner le graphique ? (booléen, true par défaut)
      */
     setBackgroundColor(color, redraw) {

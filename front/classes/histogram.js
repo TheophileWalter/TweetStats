@@ -34,7 +34,7 @@
      *         La hauteur de l'histogramme dépend de la plus grande valeur donnée
      *         Un sous-tableau ayant comme légende "%phantom%" ne sera pas dessiné (mais son emplacement sera mis vide et sa hauteur prise en compte)
      *         Un sous-tableau de taille 2 utilisera la couleur par défaut pour le dessin
-     */
+     */ 
     draw(data) {
 
         // Toujours vérifier les données avant l'appel à la méthode mère !
