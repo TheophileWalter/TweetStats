@@ -56,7 +56,7 @@ def proceedRequest(path):
         #os.system('spark-submit "' + root_path + '/back/search.py" ' + escapeString(query) + ' ' + escapeString(hashid))
         #os.spawnl(os.P_NOWAIT, 'spark-submit', [root_path + '/back/search.py', query, hashid])
         if (not os.path.exists(root_path + '/data/results/' + hashid + '.json')):
-            subprocess.Popen(["spark-submit", root_path + '/back/search.py', query, hashid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            subprocess.Popen(["spark-submit", root_path + '/back/search.py', query, hashid])
 
         # On renvoie l'identifiant de la recherche au client pour qu'il puisse récupérer le résultat
         return '{"status":"1","id":"' + hashid + '"}'

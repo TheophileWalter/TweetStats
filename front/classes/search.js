@@ -188,11 +188,21 @@
 
         // Nombre de tweets
         if (this.words.length == 1) {
-            this.content.innerHTML = "<div class=\"search-title\">Tweets contenant ce mot : " + util.escapeHtml(object.result.countOneOf) + "</div><br />";
+            this.content.innerHTML = "<div class=\"search-title\">Tweets contenant ce mot : " + util.escapeHtml(object.result.countOneOf) + "</div>";
         } else {
-            this.content.innerHTML = "<div class=\"search-title\">Tweets contenant tous ces mots : " + util.escapeHtml(object.result.countAll) + "</div><br />";
-            this.content.innerHTML += "<div class=\"search-title\">Tweets contenant au moins un de ces mots : " + util.escapeHtml(object.result.countOneOf) + "</div><br />";
+            this.content.innerHTML = "<br /><div class=\"search-title\">Tweets contenant tous ces mots : " + util.escapeHtml(object.result.countAll) + "</div>";
+            this.content.innerHTML += "<br /><div class=\"search-title\">Tweets contenant au moins un de ces mots : " + util.escapeHtml(object.result.countOneOf) + "</div>";
         }
+
+        // Mots les plus réccurents
+        var cloudDiv = document.createElement("div");
+        this.content.appendChild(cloudDiv);
+        cloudDiv.innerHTML = "<br /><div class=\"search-title\">Mots les plus utilisés dans ces tweets :</div>";
+        var wordCloud = new WordCloud(cloudDiv);
+        wordCloud.setCallBack(function(word) {
+            searchTweet(word);
+        });
+        wordCloud.draw(wordCloud.normalize(object.result.mostUsedWords, 100));
 
         // Prépare la localisation
         var coords = [];
@@ -201,20 +211,20 @@
         }
 
         // Afiche une carte si il y a des données
-        // Se fait en dernier cas il contient des méthodes qui attendent le chargement d'une image,
-        // il faut donc que les autres modifications soient terminées
+        var mapDiv = document.createElement("div");
+        this.content.appendChild(mapDiv);
         if (coords.length == 0) {
-            this.content.innerHTML += "<div class=\"search-title\">Aucune localisation disponnible pour cette recherche.</div><br />";
+            mapDiv.innerHTML = "<br /><div class=\"search-title\">Aucune localisation disponnible pour cette recherche.</div>";
         } else {
-            this.content.innerHTML += "<div class=\"search-title\">Localisation des tweets (" + coords.length + " tweet" + (coords.length > 1 ? "s" : "") + " localisé" + (coords.length > 1 ? "s" : "") + ")</div><br />";
-            var graph = new ResizableGraph(500, 250, this.content, Map);
+            mapDiv.innerHTML = "<br /><div class=\"search-title\">Localisation des tweets (" + coords.length + " tweet" + (coords.length > 1 ? "s" : "") + " localisé" + (coords.length > 1 ? "s" : "") + ")</div>";
+            var graph = new ResizableGraph(500, 250, mapDiv, Map);
             graph.draw(coords);
         }
 
-        // TODO: Implémenter l'affichage
+        // Affiche les données brutes
         var jsonDiv = document.createElement("div");
         this.content.appendChild(jsonDiv);
-        jsonDiv.innerHTML += "<div class=\"search-title\">Résultat brut</div>";
+        jsonDiv.innerHTML = "<br /><div class=\"search-title\">Résultat brut</div>";
         var jse = new JsonExplorer(jsonDiv);
         jse.draw(object);
     }

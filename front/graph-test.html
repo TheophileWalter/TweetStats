@@ -10,6 +10,7 @@
         <script type="text/javascript" src="classes/html-display.js"></script>
         <script type="text/javascript" src="classes/json-explorer.js"></script>
         <script type="text/javascript" src="classes/map.js"></script>
+        <script type="text/javascript" src="classes/word-cloud.js"></script>
     </head>
     <body style="padding-bottom: calc(100vh - 1em);">
         <h1>Tests the graphics drawing</h1>
@@ -95,6 +96,21 @@
             ]
             var graph = new ResizableGraph(500, 250, document.body, Map);
             graph.draw(geoData);
+        </script>
+
+        <!-- Dessin du nuage de mots -->
+        <div id="word-cloud" style="width:500px; height:500px;"></div>
+        <script type="text/javascript">
+            var data = [["bonjour", 33],["visualstudio", 45],
+				["javascript", 35],["code", 25],
+				["tweets",95],["projet", 55],
+				["trump", 58],["ok", 72],
+				["rendu", 56],["team", 53],
+				["work", 41],["party", 15],
+                ["todo", 21],["perfect", 20]];
+                var cloud = new WordCloud(document.getElementById("word-cloud"));
+                cloud.setCallBack(function(word) {alert(word);});
+                cloud.draw(data);
         </script>
 
     </body>

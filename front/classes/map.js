@@ -67,10 +67,6 @@ class Map extends Graph {
         // Affichage de la carte en fond
         this.context.drawImage(this.background, 0, 0, this.canvas.width, this.canvas.height);
 
-        // Supprimé car géré par la classe mère
-        //this.canvas.width = 2521;
-        //this.canvas.height = 1260;
-
         //importants variables
         this.centerN = (this.height / 2);
         this.centerE = (this.width / 2);

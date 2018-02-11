@@ -4,7 +4,7 @@
 #
 # Fichier       ./back/search.py
 # Description   Fichier principal du système de recherche de tweet
-# Auteurs       Théophile Walter
+# Auteurs       Théophile Walter, Alexis Marembert
 
 # Utilisation :
 #   spark-submit search.py query id
@@ -25,6 +25,7 @@ import sys
 import os
 import re # Expressions régulières
 import json
+import datetime
 
 # Vérification des paramètres
 if (len(sys.argv) < 3):
@@ -60,6 +61,11 @@ def search_all_array_in_string(array, string):
             return False
     return True
 
+# Echape une chaîne de caractères pour du JSON
+def escape_string(string):
+    return string.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n')
+
+
 # Recherche simple, les tweets contenant au moins un des mots
 rdd_one_word = tweets_file.filter(lambda e: search_array_in_string(words, e['text']))
 
@@ -68,6 +74,13 @@ rdd_all_words = tweets_file.filter(lambda e: search_all_array_in_string(words, e
 
 # Récupère les coordonnées
 rdd_coords = rdd_one_word.filter(lambda e: e['coordinates'] != None and e['coordinates']['type'] == 'Point').map(lambda e: e['coordinates']['coordinates'])
+
+# Compte les mots les plus utilisés
+word_count = rdd_one_word.flatMap(lambda line: re.split('[   ,.;:!?]', line['text'])) \
+                .map(lambda word: (word, 1)) \
+                .reduceByKey(lambda a, b: a + b) \
+                .map(lambda e: (e[1], e[0])) \
+                .sortByKey(ascending=False)
 
 # Ouverture du fichier pour marquer les réponses
 out_path = root_path + '/data/results/' + hashid + '_temp.json'
@@ -81,7 +94,20 @@ out.write('"coords":[')
 locs = ''
 for loc in rdd_coords.collect():
     locs += '[' + str(loc[0]) + ',' + str(loc[1]) + '],'
-out.write(locs[:-1] + ']')
+out.write(locs[:-1] + '],')
+
+# Les 20 mots les plus utilisés
+out.write('"mostUsedWords":[')
+words = ''
+i = 0
+for word in word_count.collect():
+    the_word = word[1].encode('utf-8')
+    if (len(the_word) >= 5 and the_word != 'https'):
+        words += '["' + escape_string(the_word) + '",' + str(word[0]) + '],'
+        i += 1
+        if (i >= 20):
+            break
+out.write(words[:-1] + ']')
 
 out.write('}')
 out.close()
