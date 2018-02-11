@@ -4,7 +4,7 @@
 #
 # Fichier       ./back/search.py
 # Description   Fichier principal du système de recherche de tweet
-# Auteurs       Théophile Walter
+# Auteurs       Théophile Walter, Alexis Marembert
 
 # Utilisation :
 #   spark-submit search.py query id

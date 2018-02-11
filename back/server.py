@@ -4,7 +4,7 @@
 #
 # Fichier       ./back/server.py
 # Description   Fichier principal du serveur web
-# Auteurs       Théophile Walter
+# Auteurs       Théophile Walter, Alexis Marembert
 
 # Imports de base
 import sys
