@@ -102,7 +102,7 @@ class WordCloud extends HtmlDisplay {
 
         // Sort data
         data.sort(function(w1, w2) {
-            return -1 * (w1[1] - w2[2]);
+            return -1 * (w1[1] - w2[1]);
         });
 
         // visited words
