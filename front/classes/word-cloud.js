@@ -116,7 +116,7 @@ class WordCloud extends HtmlDisplay {
             wordContainer.addEventListener("click", function() {
                 wordCloudThis.clickCallBack(this.innerHTML);
             });
-            wordContainer.title = realValue + " occurences";
+            wordContainer.title = realValue + " occurrences";
             wordContainer.className = "word-cloud-element";
             
             // position must be ABSOLUTE
