@@ -82,6 +82,11 @@ word_count = rdd_one_word.flatMap(lambda line: re.split('[   ,.;:!?]', line['tex
                 .map(lambda e: (e[1], e[0])) \
                 .sortByKey(ascending=False)
 
+# Effectue des statistiques sur les dates des tweets
+tweet_date = rdd_one_word.map(lambda e: (datetime.datetime.fromtimestamp(int(e['timestamp_ms'])/1000).strftime('%H:%M'), 1)) \
+                .reduceByKey(lambda a, b: a+b) \
+                .sortByKey()
+
 # Ouverture du fichier pour marquer les réponses
 out_path = root_path + '/data/results/' + hashid + '_temp.json'
 out = open(out_path, 'w') 
@@ -107,7 +112,14 @@ for word in word_count.collect():
         i += 1
         if (i >= 20):
             break
-out.write(words[:-1] + ']')
+out.write(words[:-1] + '],')
+
+# Nombre de tweets par heure
+out.write('"tweetsByTime":[')
+dates = ''
+for d in tweet_date.collect():
+    dates += '["' + d[0] + '",' + str(d[1]) + '],'
+out.write(dates[:-1] + ']')
 
 out.write('}')
 out.close()

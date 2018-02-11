@@ -102,7 +102,6 @@ class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 httpd = SocketServer.TCPServer(('localhost', port), CustomHandler)
 
 # Ferme le socket à la fin du programme
-# TODO: Does not works all times
 def close_socket():
     print ('closing socket.')
     httpd.server_close()

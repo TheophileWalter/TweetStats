@@ -13,26 +13,24 @@ Graphical tests : `http://localhost:2319/graph-test.html`
 
 ## To do list
 
-- [ ] Application Front End (HTML/JavaScript web page)
+- [X] Application Front End (HTML/JavaScript web page)
   - [X] Search a Tweet with keywords
-  - [ ] Graphical summary of the search result
-    - [ ] Number of tweet founds
+  - [X] Graphical summary of the search result
+    - [X] Number of tweet founds
     - [X] Geographical repartition
-	- [X] WordsCloud
-    - [ ] Most used hashtags on these Tweets
-    - [ ] _Some others statistics_
+	  - [X] WordsCloud
+    - [X] Most used words on these Tweets
+    - [X] _Some others statistics_
   - [X] Server query (Javascript)
   - [X] HTML JSon explorer
-- [ ] Application Back End (python server)
+- [X] Application Back End (python server)
   - [X] Serving files
   - [X] Manage HTTP sessions
   - [X] Execute python code with specials URLs
-  - [ ] Creating a python object that contains informations about HTTP sessions and parameters
-- [ ] Request engine on Tweet database (Spark/HDFS)
-  - [ ] Import JSON file (replace current base or append)
-  - [ ] Perform queries on database
-  - [ ] Delete database
-  - [ ] Make a list of most used words in the database for search auto-complete
+  - [X] Creating a python object that contains informations about HTTP sessions and parameters
+- [X] Request engine on Tweet database (Spark/HDFS)
+  - [X] Import JSON file (replace current base or append)
+  - [X] Perform queries on database
 - [ ] Remove secret NASA hacking code from our code
 
 ---

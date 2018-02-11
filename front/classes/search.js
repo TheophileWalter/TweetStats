@@ -221,6 +221,19 @@
             graph.draw(coords);
         }
 
+        // Affiche l'histogramme en fonction des dates
+        var histoDiv = document.createElement("div");
+        this.content.appendChild(histoDiv);
+        histoDiv.innerHTML = "<br /><div class=\"search-title\">Répartition des tweets en fonction de l'heure</div>";
+        var histoData = new Array(object.result.tweetsByTime.length);
+        for (var i = 0; i < object.result.tweetsByTime.length; i++) {
+            histoData[i] = [object.result.tweetsByTime[i][0], object.result.tweetsByTime[i][1], "#404040"];
+        }
+        var histo = new ResizableGraph("100%", 250, histoDiv, Histogram);
+        histo.setBackgroundColor("#F0F0F0");
+        histo.setForegroundColor("#404040");
+        histo.draw(histoData);
+
         // Affiche les données brutes
         var jsonDiv = document.createElement("div");
         this.content.appendChild(jsonDiv);

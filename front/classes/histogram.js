@@ -21,7 +21,7 @@
         // Appel du constructeur parent
         super(element);
         // Configuration par défaut
-        this.margins = 20; // Marges internes dans le tableau
+        this.margins = 40; // Marges internes dans le tableau
         this.space = 5; // Taille entre les rectangles
     }
 
@@ -89,7 +89,11 @@
                 }
                 this.context.textAlign = "center";
                 this.context.font = "15px Arial";
-                this.context.fillText(data[i][0], x+(columnWidth/2), legendY);
+                this.context.save();
+                this.context.translate(x+(columnWidth/2), legendY);
+                this.context.rotate(-Math.PI/2);
+                this.context.fillText(data[i][0], 0, 0);
+                this.context.restore();
 
             }
 
