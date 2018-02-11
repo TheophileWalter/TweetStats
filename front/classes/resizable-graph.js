@@ -76,7 +76,7 @@
      * @params
      *   width:  La nouvelle largeur (en pixels, sans le "px")
      *   height: La nouvelle heuteur (en pixels, sans le "px")
-     *   redraw: Faut-il redéssiner le graphique ? (booléen, true par défaut)
+     *   redraw: Faut-il redéssiner le graphique ? (booléen, true par défaut) 
      */
     resize(width, height, redraw) {
         return this.instance.resize(width, height, redraw);

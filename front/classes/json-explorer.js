@@ -41,7 +41,7 @@ class JsonExplorer extends HtmlDisplay {
      * Méthode récursive de dessin d'un sous-élement JSON
      * 
      * @params
-     *   o:   Un sous-objet JSON à afficher
+     *   o:   Un sous-objet JSON à afficher 
      *   key: La clé du sous objet depuis la racine du premier objet (ignorer au premier appel)
      * 
      * @return

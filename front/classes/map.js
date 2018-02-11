@@ -40,7 +40,7 @@ class Map extends Graph {
      *           longitude: La longitude du point sur la carte (en degrés de -180 à 180)
      *           latitude:  La latitude du point sur la carte (en degrés de -90 à 90)
      *           taille:    La taille du point (en pixels)
-     *           couleur:   La couleur du point au format CSS
+     *           couleur:   La couleur du point au format CSS 
      */
     draw(data) {
 

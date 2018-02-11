@@ -18,6 +18,7 @@ Graphical tests : `http://localhost:2319/graph-test.html`
   - [ ] Graphical summary of the search result
     - [ ] Number of tweet founds
     - [X] Geographical repartition
+	- [X] WordsCloud
     - [ ] Most used hashtags on these Tweets
     - [ ] _Some others statistics_
   - [X] Server query (Javascript)

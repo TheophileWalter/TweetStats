@@ -11,7 +11,7 @@ class HtmlDisplay {
      * Constructeur de la classe Graph
      * 
      * @params
-     *   element: l'élément DOM à utiliser comme parent ("div" de préférence)
+     *   element: l'élément DOM à utiliser comme parent ("div" de préférence) 
      */
     constructor(element) {
         this.element = element;
