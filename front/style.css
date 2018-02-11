@@ -18,6 +18,8 @@ body {
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: 15px 15px;
+    /* Limite la taille à 100%, le parent doit donc avoir une taille fixe ! */
+    max-width: 100%;
 }
 
 .resizeBox > canvas {
